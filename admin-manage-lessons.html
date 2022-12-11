@@ -1,0 +1,137 @@
+
+{% extends 'base/base.html' %}
+{% load static %}
+{% block main %}
+					<!--end::Header-->
+					<!--begin::Toolbar-->
+					<div class="toolbar py-5 py-lg-5" id="kt_toolbar">
+						<!--begin::Container-->
+						<div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
+							<!--begin::Page title-->
+							<div class="page-title d-flex flex-column me-3">
+								<!--begin::Title-->
+								<h1 class="d-flex text-dark fw-bolder my-1 fs-3">E-Learning</h1>
+								<!--end::Title-->
+								<!--begin::Breadcrumb-->
+								<ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
+									<!--begin::Item-->
+									<li class="breadcrumb-item text-gray-600">
+										<a href="/metronic8/demo11/../demo11/index.html" class="text-gray-600 text-hover-primary">Home</a>
+									</li>
+									<!--end::Item-->
+									<!--begin::Item-->
+									<li class="breadcrumb-item text-gray-600">E-Learning</li>
+									<!--end::Item-->
+									<!--begin::Item-->
+									<li class="breadcrumb-item text-gray-500">Manage Lessons</li>
+									<!--end::Item-->
+								</ul>
+								<!--end::Breadcrumb-->
+							</div>
+							<!--end::Page title-->
+							<!--begin::Actions-->
+
+							<!--end::Actions-->
+						</div>
+						<!--end::Container-->
+					</div>
+					<!--end::Toolbar-->
+					<!--begin::Container-->
+					<div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl-1">
+						<!--begin::Post-->
+						<div class="content flex-row-fluid" id="kt_content">
+
+
+							<!--begin::Card-->
+								<div class="card">
+									<!--begin::Card header-->
+									<div class="card-header">
+										<!--begin::Card title-->
+										<div class="card-title fs-3 fw-bolder">Manage Lessons</div>
+										<!--end::Card title-->
+
+									</div>
+									<!--end::Card header-->
+
+								<!--begin::Form-->
+									<form class="form">
+										<!--begin::Card body-->
+										<div class="card-body p-9">
+										<!--begin::Block-->
+
+										<table id="fund_transfer" class="table border table-row-bordered gy-3 gs-5 border rounded">
+										    <thead>
+										        <tr class="fw-bolder fs-6 text-gray-800 px-7">
+										            <th>S.No</th>
+													<th>Lesson Title</th>
+                                                    <th>Lesson Description</th>
+													<th>Lesson Video Duration</th>
+													<th>Lesson Video Duration </th>
+													<th>Document </th>
+													<th>Audio </th>
+													<th>Image </th>
+													<th>Status </th>
+                                                    <th>Created On</th>
+													<th>Action</th>
+										        </tr>
+										    </thead>
+											{% for addlessons in report %}
+										    <tbody>
+										    	<tr>
+										    		<td>{{forloop.counter}}</td>
+										    		<td>{{addlessons.lesson_title}}</td>
+                                                    <td>{{addlessons.lesson_description}}</td>
+													<td>{{addlessons.lesson_video_caption}}</td>
+													<td>{{addlessons.lesson_video_duration}}</td>
+													<td>{{addlessons.document}}</td>
+													<td>{{addlessons.audio}}</td>
+
+                                                   {% if addlessons.image %}
+                                            <td>
+                                                <img src="{{ addlessons.image.url }}" alt="" class="prod-size" style="width:70px;">
+                                            </td>
+                                        {% else %}
+                                            <td>
+                                                <img src="{% static 'images/lessons.png' %}" alt="" class="prod-size" style="width:70px;">
+                                            </td>
+                                        {% endif %}
+													<td>{{addlessons.status}}</td>
+													<td>{{addlessons.created_at|date:"M-d-Y"}}</td>
+													<td>
+
+										    			<a href="{% url 'office:edit_lessons' addlessons.id %}" class="me-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="bi bi-pencil-square fs-6"></i></a>
+                                                        <a href="{% url 'office:delete_lessons' addlessons.id %}" class="me-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><i class="bi bi-trash fs-6"></i></a>
+										    		</td>
+										    	</tr>
+                                             </tbody>
+											{% endfor %}
+										</table>
+
+										</div>
+										<!--end::Card body-->
+
+									</form>
+
+									<!--end:Form-->
+								</div>
+								<!--end::Card-->
+						</div>
+						<!--end::Post-->
+					</div>
+					<!--end::Container-->
+					<!--begin::Footer-->
+
+
+                </tbody>
+            </table>
+
+
+        </div>
+        <!--end::Post-->
+    </div>
+    <!--end::Container-->
+{% endblock %}
+{% block footer %}
+
+    <script src="{% static 'office/assets/js/managelessons.js' %}"></script>
+{% endblock %}

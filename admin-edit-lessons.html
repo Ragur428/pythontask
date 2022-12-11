@@ -1,0 +1,200 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block header %}
+    <link href="{% static 'office/' %}assets/css/ewallet.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+{% block main %}
+
+
+
+
+
+	<!--begin::Body-->
+
+		<!--begin::Main-->
+		<!--begin::Root-->
+
+					<!--end::Header-->
+					<!--begin::Toolbar-->
+					<div class="toolbar py-5 py-lg-5" id="kt_toolbar">
+						<!--begin::Container-->
+						<div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
+							<!--begin::Page title-->
+							<div class="page-title d-flex flex-column me-3">
+								<!--begin::Title-->
+								<h1 class="d-flex text-dark fw-bolder my-1 fs-3">E-Learning</h1>
+								<!--end::Title-->
+								<!--begin::Breadcrumb-->
+								<ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
+									<!--begin::Item-->
+									<li class="breadcrumb-item text-gray-600">
+										<a href="/metronic8/demo11/../demo11/index.html" class="text-gray-600 text-hover-primary">Home</a>
+									</li>
+									<!--end::Item-->
+									<!--begin::Item-->
+									<li class="breadcrumb-item text-gray-600">E-Learning</li>
+									<!--end::Item-->
+									<!--begin::Item-->
+									<li class="breadcrumb-item text-gray-500">Edit Lessons</li>
+									<!--end::Item-->
+								</ul>
+								<!--end::Breadcrumb-->
+							</div>
+							<!--end::Page title-->
+							<!--begin::Actions-->
+
+						</div>
+						<!--end::Container-->
+					</div>
+					<!--end::Toolbar-->
+					<!--begin::Container-->
+					<div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+						<!--begin::Post-->
+						<div class="content flex-row-fluid" id="kt_content">
+
+
+							<!--begin::Card-->
+								<div class="card">
+									<!--begin::Card header-->
+									<div class="card-header">
+										<!--begin::Card title-->
+										<div class="card-title fs-3 fw-bolder">Edit Lessons</div>
+										<!--end::Card title-->
+
+									</div>
+									<!--end::Card header-->
+
+
+
+				<!--end::Toolbar-->
+				<!--begin::Container-->
+				<div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+					<!--begin::Post-->
+					<div class="content flex-row-fluid" id="kt_content">
+						<div class="card mb-5 mb-xl-10">
+							<!--begin::Card header-->
+
+							<!--begin::Card header-->
+							 <form id="kt_account_profile_details_form" class="form" action="{% url 'office:edit_lessons'  lesson_get.id %}"
+                          method="post" enctype="multipart/form-data">
+								{% csrf_token %}
+								 <div class="card-body">
+                                 <input type="hidden" name="addlessonsId" id="addlessonsId" value="{{ lesson_get.id }}">
+
+							<!--begin::Card body-->
+							<div class="card-body border-top p-9">
+								<div class="row mb-6">
+									<!--begin::Label-->
+									<label class="col-lg-2 col-form-label  fw-bold fs-6">Lesson Title</label>
+									<!--end::Label-->
+									<!--begin::Col-->
+									<div class="col-lg-8 fv-row">
+										<input type="text" class="form-control form-control-solid"  name="lesson_title" placeholder=""  value="{{ lesson_get.lesson_title }}"/>
+
+									</div>
+									<!--end::Col-->
+								</div>
+
+								<div class="row mb-6">
+									<!--begin::Label-->
+									<label class="col-lg-2 col-form-label  fw-bold fs-6">Lesson Description</label>
+									<!--end::Label-->
+									<!--begin::Col-->
+									<div class="col-lg-8 fv-row">
+										<input class="form-control form-control form-control-solid"  name="lesson_description"  value="{{ lesson_get.lesson_description }}"  />
+									</div>
+									<!--end::Col-->
+								</div>
+								
+								<div class="row mb-6">
+									<!--begin::Label-->
+									<label class="col-lg-2 col-form-label  fw-bold fs-6">Lesson Video Duration</label>
+									<!--end::Label-->
+									<!--begin::Col-->
+									<div class="col-lg-8 fv-row">
+										<input type="number" class="form-control form-control-solid" name="lesson_video_duration" placeholder=""  value="{{ lesson_get.lesson_video_caption }}" />
+									</div>
+									<!--end::Col-->
+								</div>
+
+
+
+								<div class="row mb-6">
+									<!--begin::Label-->
+									<label class="col-lg-2 col-form-label  fw-bold fs-6">Lesson Video Duration</label>
+									<!--end::Label-->
+									<!--begin::Col-->
+									<div class="col-lg-8 fv-row">
+										<input class="form-control" type="file"  name="lesson_video_duration"    />
+
+									</div>
+									<!--end::Col-->
+								</div>
+								
+								<div class="row mb-6">
+									<!--begin::Label-->
+									<label class="col-lg-2 col-form-label  fw-bold fs-6">Document</label>
+									<!--end::Label-->
+									<!--begin::Col-->
+									<div class="col-lg-8 fv-row">
+										<input class="form-control" type="file" name="document"  />
+
+
+									</div>
+									<!--end::Col-->
+								</div>
+
+								<div class="row mb-6">
+									<!--begin::Label-->
+									<label class="col-lg-2 col-form-label  fw-bold fs-6">Audio</label>
+									<!--end::Label-->
+									<!--begin::Col-->
+									<div class="col-lg-8 fv-row">
+										<input class="form-control" type="file" name="audio"  />
+
+									</div>
+									<!--end::Col-->
+								</div>
+                            <div class="row mb-6">
+									<!--begin::Label-->
+
+										  {% if addlessons.image %}
+                                    <img src="{{ addlessons.image.url }}" alt="image here" class="prod-size">
+                                        {% endif %}
+
+									<label   class="col-lg-2 col-form-label  fw-bold fs-6" >Image</label>
+									<!--end::Label-->
+									<!--begin::Col-->
+									<div class="col-lg-8 fv-row">
+
+                                         <input type="file"  name="image"  class="form-control" value="{{ lesson_get.image }} />
+
+									</div>
+									<!--end::Col-->
+								</div>
+
+								<div class="row mb-6">
+									<!--begin::Label-->
+									<label class="col-lg-2 col-form-label  fw-bold fs-6">Status</label>
+									<!--end::Label-->
+									<!--begin::Col-->
+									<div class="col-lg-8 fv-row">
+										<div class="btn-group btn-toggle"Required name="status"  />
+											<button class="btn btn-xs btn-light-primary">ON</button>
+											<button class="btn btn-xs btn-primary active">OFF</button>
+										</div>
+									</div>
+									<!--end::Col-->
+								</div>
+
+							</div>
+							<!--end::Card body-->
+							<!--begin::Actions-->
+							<div class="card-footer d-flex justify-content-end py-6 px-9">
+								 <button type="submit" class="btn btn-warning " id="kt_account_profile_details_submit">Update</button>
+
+							</div>
+							<!--end::Actions-->
+							<!--end::Content-->
+
+{% endblock %}
